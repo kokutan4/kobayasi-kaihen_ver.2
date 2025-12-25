@@ -16,20 +16,26 @@ import HamburgerMenu from './components/HambergerMenu'; // ハンバーガーメ
 import LoadingScreen from './components/LoadingScreen'; // ★ ローディング画面コンポーネント
 
 const profile = {
-  name: "中条 俊介",
-  role: "専門校生",
+  name: "田中　しほ",
+  role: "京都府議会議員",
   concept: "中条俊介　過去に浸るホームページ",
   introduction: "小学校1年からサッカーをはじめ、20歳まで本気でサッカーをしていました。過去の記録に浸りたい気分　なので、仕方ないから見てやるよって方は、見ていただける、と有難いです。",
+};
+
+const records = {
+title : "活動記録",
+
+
 };
 
 export default function HomePage() {
 
   const [isOpen, setIsOpen] = useState(false);
 
-  // ★ 追加①：ローディング状態を管理
+  //ローディング状態を管理
   const [loading, setLoading] = useState(true);
+  //ページ読み込み後にローディングを解除
 
-  // ★ 追加②：ページ読み込み後にローディングを解除
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 1200); // 1.2秒後に非表示
     return () => clearTimeout(timer);
@@ -48,23 +54,84 @@ export default function HomePage() {
       >
 
         {/* --- 1. ヘッダー & ハンバーガーメニュー --- */}
-        <header className="fixed top-0 w-full bg-white/80 backdrop-blur-md z-50 border-b border-[#F2EDE9]">
-          <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <Link href="/" className="text-xl md:text-2xl font-serif tracking-widest text-[#8E7D73] font-semibold">
-              中条 俊介 ポートフォリオ
+      <header className="fixed top-0 w-full bg-white/80 backdrop-blur-md z-50 border-b border-[#F2EDE9]">
+        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+
+          {/* ロゴ */}
+          <Link
+            href="/"
+            className="font-serif tracking-widest text-[#8E7D73] font-semibold leading-tight"
+          >
+            <span className="block text-base md:text-lg">京都府議会議員</span>
+            <span className="block leading-tight">
+              <span className="text-2xl md:text-3xl">田中 しほ</span>
+              <span className="text-lg md:text-xl ml-2">公式サイト</span>
+            </span>
+          </Link>
+
+          {/* PC用ナビ（SNS + メニュー） */}
+          <div className="hidden md:flex flex-col items-end gap-3">
+          {/* SNSリンク（上段） */}
+          <div className="flex items-center gap-4 text-[#8E7D73]">
+
+            {/* X（旧Twitter） */}
+            <Link href="https://twitter.com" className="hover:text-[#C5A59E] transition-colors">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path d="M18.244 2h3.308l-7.227 8.26L22 22h-6.843l-4.42-5.803L5.6 22H2.29l7.73-8.835L2 2h6.976l4.028 5.332L18.244 2zm-1.16 18.17h1.833L7.084 3.69H5.117l11.967 16.48z" />
+              </svg>
             </Link>
 
-            {/* PC用ナビゲーション */}
-            <nav className="hidden md:flex items-center gap-10 text-sm font-bold tracking-widest">
-              <Link href="#about" className="hover:text-[#C5A59E] transition-colors">自己紹介</Link>
-              <Link href="/records" className="hover:text-[#C5A59E] transition-colors">活動記録</Link>
+            {/* Instagram */}
+            <Link href="https://www.instagram.com" className="hover:text-[#C5A59E] transition-colors">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path d="M7 2C4.243 2 2 4.243 2 7v10c0 2.757 2.243 5 5 5h10c2.757 0 5-2.243 5-5V7c0-2.757-2.243-5-5-5H7zm10 2c1.654 0 3 1.346 3 3v10c0 1.654-1.346 3-3 3H7c-1.654 0-3-1.346-3-3V7c0-1.654 1.346-3 3-3h10zm-5 3a5 5 0 100 10 5 5 0 000-10zm0 2a3 3 0 110 6 3 3 0 010-6zm4.5-.75a1.25 1.25 0 11-2.5 0 1.25 1.25 0 012.5 0z" />
+              </svg>
+            </Link>
+
+            {/* Facebook */}
+            <Link href="https://facebook.com" className="hover:text-[#C5A59E] transition-colors">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path d="M22 12a10 10 0 10-11.5 9.9v-7h-2v-3h2v-2.3c0-2 1.2-3.1 3-3.1.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2V12h2.3l-.4 3h-1.9v7A10 10 0 0022 12z" />
+              </svg>
+            </Link>
+
+          </div>
+
+            {/* メインナビ */}
+            <nav className="flex items-center gap-10 text-sm font-bold tracking-widest">
+              <Link href="/profile" className="hover:text-[#C5A59E] transition-colors">田中しほについて</Link>
+              <Link href="/policy" className="hover:text-[#C5A59E] transition-colors">政策</Link>
+              <Link href="/records" className="hover:text-[#C5A59E] transition-colors">活動報告</Link>
               <Link href="/contact" className="hover:text-[#C5A59E] transition-colors">お問い合わせ</Link>
             </nav>
+          </div>
 
-            {/* スマホ用オーバーレイメニュー */}
+          {/* スマホ用ハンバーガーメニュー（正しい位置） */}
+          <div className="md:hidden">
             <HamburgerMenu />
           </div>
-        </header>
+
+        </div>
+      </header>
+
 
         {/* --- 2. ヒーローセクション --- */}
         <main className="pt-20">
