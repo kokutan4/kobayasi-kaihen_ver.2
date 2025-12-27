@@ -81,49 +81,34 @@ export default function HomePage() {
         </header>
 
         <main className="pt-20">
-          {/* --- 2. ヒーローセクション --- */}
-      <section className="relative h-[60vh] md:h-[80vh] flex items-center overflow-hidden bg-[#8E7D73]">
-      {/* 1. 背景画像エリア（装飾用: aria-hidden） */}
-      <div className="absolute inset-0 z-0" aria-hidden="true">
-        <Image
-          src="/img/giin.png"
-          alt=""
-          fill
-          /* object-[横の位置_縦の位置] 
-            横：100% (右端) 
-            縦：20% (上から20%の位置を中心に持ってくる＝全体的に画像が下に下がる)
-          */
-          className="object-cover object-[100%_20%]" 
-          priority
-        />
-      </div>
-
-      {/* 2. 背景グラデーション・オーバーレイ（文字可読性向上） */}
-      <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent z-10" />
-
-      {/* 3. コンテンツ（左テキスト / 右写真） */}
-      <div className="container mx-auto px-6 relative z-20 w-full">
-        <div className="flex flex-col md:flex-row items-center">
-          {/* 左：テキスト（幅 60%） */}
-          <div className="w-full md:w-3/5 text-left text-white">
-            <h2 className="text-3xl md:text-5xl lg:text-6xl font-serif font-bold leading-tight mb-8 tracking-tight drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]">
-              京都の課題に、<br className="md:hidden" />全力で走り抜く。
-            </h2>
+        {/* --- 2. ヒーローセクション --- */}
+        <section className="relative h-[60vh] md:h-[80vh] flex items-center overflow-hidden bg-[#8E7D73]">
+          
+          {/* 背景画像の表示エリアを max-w-7xl に制限し、mx-auto で中央寄せにする */}
+          <div className="absolute inset-0 z-0 max-w-7xl mx-auto w-full" aria-hidden="true">
+            <Image
+              src="/img/giin.png"
+              alt=""
+              fill
+              className="object-cover object-right md:object-[100%_20%]" 
+              priority
+            />
           </div>
-        </div>
-      </div>
-    </section>
 
+          {/* グラデーションも画像と同じ範囲に合わせる */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent z-10 max-w-7xl mx-auto w-full" />
 
-
-          {/* --- 3. パンくずリスト --- */}
-          <nav className="max-w-7xl mx-auto px-6 py-6 flex items-center gap-2 text-[10px] font-bold tracking-wider text-[#B5ADA5]">
-            <Link href="/" className="hover:text-[#8E7D73] flex items-center gap-1">
-              <HiOutlineHome className="mb-0.5" /> ホーム
-            </Link>
-            <HiOutlineChevronRight size={8} />
-            <span className="text-[#8E7D73]">トップページ</span>
-          </nav>
+          {/* コンテンツエリア */}
+          <div className="container mx-auto px-6 relative z-20 w-full max-w-7xl">
+            <div className="flex flex-col md:flex-row items-center">
+              <div className="w-full md:w-3/5 text-left text-white">
+                <h2 className="text-3xl md:text-5xl lg:text-6xl font-serif font-bold leading-tight mb-8 drop-shadow-lg">
+                  京都の課題に、<br className="md:hidden" />全力で走り抜く。
+                </h2>
+              </div>
+            </div>
+          </div>
+        </section>
 
           {/* --- 4. 自己紹介セクション --- */}
           <div className="max-w-5xl mx-auto px-6">
