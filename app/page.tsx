@@ -24,29 +24,20 @@ export default function HomePage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // 演出として1.2秒の待機時間を設定
     const timer = setTimeout(() => setLoading(false), 1200);
     return () => clearTimeout(timer);
   }, []);
 
   return (
     <>
-      {/* ローディング画面 */}
       {loading && <LoadingScreen />}
       
-      <div
-        className={`min-h-screen bg-[#FDFBF9] text-[#5C544E] font-sans selection:bg-[#F3E5E3]
-        transition-opacity duration-700 ${loading ? "opacity-0" : "opacity-100"}`}
-      >
+      <div className={`min-h-screen bg-[#FDFBF9] text-[#5C544E] font-sans selection:bg-[#F3E5E3] transition-opacity duration-700 ${loading ? "opacity-0" : "opacity-100"}`}>
 
         {/* --- 1. ヘッダー --- */}
         <header className="fixed top-0 w-full bg-white/80 backdrop-blur-md z-50 border-b border-[#F2EDE9]">
           <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            {/* ロゴ */}
-            <Link
-              href="/"
-              className="font-serif tracking-widest text-[#8E7D73] font-semibold leading-tight"
-            >
+            <Link href="/" className="font-serif tracking-widest text-[#8E7D73] font-semibold leading-tight">
               <span className="block text-sm md:text-base">京都府議会議員</span>
               <span className="block leading-tight">
                 <span className="text-xl md:text-2xl">{profile.name}</span>
@@ -54,10 +45,8 @@ export default function HomePage() {
               </span>
             </Link>
 
-            {/* PC用ナビ */}
             <div className="hidden md:flex flex-col items-end gap-2">
               <div className="flex items-center gap-4 text-[#8E7D73]">
-                {/* SNSアイコン（リンク先は適宜修正してください） */}
                 <Link href="#" className="hover:text-[#C5A59E] transition-colors">
                   <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2h3.308l-7.227 8.26L22 22h-6.843l-4.42-5.803L5.6 22H2.29l7.73-8.835L2 2h6.976l4.028 5.332L18.244 2zm-1.16 18.17h1.833L7.084 3.69H5.117l11.967 16.48z" /></svg>
                 </Link>
@@ -72,8 +61,6 @@ export default function HomePage() {
                 <Link href="/contact" className="hover:text-[#C5A59E] transition-colors">お問い合わせ</Link>
               </nav>
             </div>
-
-            {/* スマホ用メニュー */}
             <div className="md:hidden">
               <HamburgerMenu />
             </div>
@@ -81,70 +68,71 @@ export default function HomePage() {
         </header>
 
         <main className="pt-20">
-        {/* --- 2. ヒーローセクション --- */}
-        <section className="relative h-[60vh] md:h-[80vh] flex items-center overflow-hidden bg-[#8E7D73]">
-          
-          {/* 背景画像の表示エリアを max-w-7xl に制限し、mx-auto で中央寄せにする */}
-          <div className="absolute inset-0 z-0 max-w-7xl mx-auto w-full" aria-hidden="true">
-            <Image
-              src="/img/giin.png"
-              alt=""
-              fill
-              className="object-cover object-right md:object-[100%_20%]" 
-              priority
-            />
-          </div>
-
-          {/* グラデーションも画像と同じ範囲に合わせる */}
-          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent z-10 max-w-7xl mx-auto w-full" />
-
-          {/* コンテンツエリア */}
-          <div className="container mx-auto px-6 relative z-20 w-full max-w-7xl">
-            <div className="flex flex-col md:flex-row items-center">
-              <div className="w-full md:w-3/5 text-left text-white">
-                <h2 className="text-3xl md:text-5xl lg:text-6xl font-serif font-bold leading-tight mb-8 drop-shadow-lg">
-                  京都の課題に、<br className="md:hidden" />全力で走り抜く。
+          {/* --- 2. ヒーローセクション --- */}
+          <section className="relative h-[60vh] md:h-[80vh] flex items-center overflow-hidden bg-[#8E7D73]">
+            <div className="absolute inset-0 z-0 max-w-7xl mx-auto w-full">
+              <Image
+                src="/img/giin.png"
+                alt=""
+                fill
+                className="object-cover object-right md:object-[100%_20%]" 
+                priority
+              />
+            </div>
+            <div className="container mx-auto px-6 relative z-20 w-full max-w-7xl h-full flex items-end pb-16">
+              <div className="w-full text-left text-white transform -rotate-2 select-none">
+                <h2 className="whitespace-nowrap text-[10vw] md:text-8xl lg:text-[110px] font-serif font-bold leading-[1.1] drop-shadow-2xl transform skew-x-[-10deg]">
+                  <span className="block mb-2">京都の課題に、</span>
+                  <span className="block ml-[5vw] md:ml-12">全力で走り抜く。</span>
                 </h2>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
 
-          {/* --- 4. 自己紹介セクション --- */}
-          <div className="max-w-5xl mx-auto px-6">
-            <section className="py-20 grid md:grid-cols-2 gap-12 items-center">
-              <div className="relative aspect-[4/5] bg-[#EBE7E0] rounded-[2.5rem] overflow-hidden shadow-sm group">
-                <Image
-                  src="/images/giin.jpg" 
-                  alt={profile.name}
-                  fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-              </div>
+          {/* --- 3. メッセージセクション（写真なし・テキスト重点） --- */}
+          <section className="bg-[#f9f8f6] py-24 md:py-40 overflow-hidden relative">
+            <div className="absolute inset-0 flex items-center justify-center select-none pointer-events-none z-0">
+              <span className="text-[20vw] font-serif font-black text-[#C5A59E]/5 leading-none">MESSAGE</span>
+            </div>
 
-              <div>
-                <h3 className="text-xs font-black uppercase tracking-[0.3em] text-[#C5A59E] mb-6 flex items-center gap-2">
-                  <span className="w-6 h-[1px] bg-[#C5A59E]"></span> 自己紹介
-                </h3>
-                <h4 className="text-3xl font-serif mb-6 text-[#4A443F]">{profile.name}</h4>
-                <p className="text-base leading-[2] text-[#7A7167] mb-8 font-light">
-                  {profile.introduction}
-                </p>
+            <div className="max-w-4xl mx-auto px-6 relative z-10">
+              <div className="text-center md:text-left">
+                <div className="mb-12 flex flex-col items-center md:items-start">
+                  <h3 className="text-sm font-black tracking-[0.4em] text-[#C5A59E] mb-6 flex items-center gap-4">
+                    <span className="w-8 h-[1px] bg-[#C5A59E]"></span>
+                    MESSAGE
+                    <span className="w-8 h-[1px] bg-[#C5A59E] md:hidden"></span>
+                  </h3>
+                  <h4 className="whitespace-nowrap text-[7.5vw] md:text-6xl lg:text-7xl font-serif font-bold text-[#4A443F] leading-tight transform skew-x-[-6deg] origin-left">
+                        <span className="block">「守るべき」を守り、</span>
+                        <span className="block md:ml-12">「変えるべき」を変える。</span>
+                  </h4>
+                </div>
 
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="p-5 bg-white border border-[#F2EDE9] rounded-2xl">
-                    <p className="text-[10px] font-bold text-[#B5ADA5] uppercase tracking-widest mb-1">役職</p>
-                    <p className="text-sm font-bold text-[#5C544E]">{profile.role}</p>
-                  </div>
-                  <div className="p-5 bg-white border border-[#F2EDE9] rounded-2xl">
-                    <p className="text-[10px] font-bold text-[#B5ADA5] uppercase tracking-widest mb-1">主な活動</p>
-                    <p className="text-sm font-bold text-[#5C544E]">京都府全域</p>
+                <div className="max-w-2xl md:ml-12 space-y-8 text-[#5C544E] leading-[2.2]">
+                  <p className="text-xl md:text-2xl font-serif italic text-[#4A443F] border-b border-[#C5A59E]/30 pb-4 inline-block">
+                    「伝える」立場から、「解決する」立場へ。
+                  </p>
+                  <p className="text-base md:text-lg text-[#7A7167] font-medium">
+                    {profile.introduction}
+                  </p>
+                </div>
+
+                <div className="mt-20 flex flex-col items-end border-t border-[#EBE7E0] pt-10">
+                  <div className="text-right">
+                    <p className="text-xs text-[#B5ADA5] tracking-[0.3em] uppercase mb-2">Representative</p>
+                    <p className="text-sm font-bold text-[#7A7167] mb-2">{profile.role}</p>
+                    <span className="text-6xl md:text-8xl font-serif font-bold text-[#4A443F] tracking-tighter">
+                      {profile.name}
+                    </span>
                   </div>
                 </div>
               </div>
-            </section>
+            </div>
+          </section>
 
-            {/* クイックリンク */}
+          {/* --- 4. クイックリンク --- */}
+          <div className="max-w-5xl mx-auto px-6">
             <section className="py-20 border-t border-[#F2EDE9]">
               <div className="grid sm:grid-cols-2 gap-6">
                 <Link href="/records" className="group p-8 bg-white border border-[#F2EDE9] rounded-[2rem] hover:shadow-md transition-all">
