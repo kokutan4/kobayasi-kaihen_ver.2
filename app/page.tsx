@@ -4,14 +4,19 @@ import React, { useState, useEffect } from 'react';
 import Link from "next/link";
 import Image from "next/image";
 import {
-  HiOutlineChevronRight,
-  HiOutlineHome,
   HiOutlinePhotograph,
   HiOutlineMail
 } from 'react-icons/hi';
 
 import HamburgerMenu from './components/HambergerMenu';
 import LoadingScreen from './components/LoadingScreen';
+
+// 修正されたエフェクトコンポーネントをインポート
+import { 
+  TextEffectImpact, 
+  TextEffectSlideLeft, 
+  TextEffectScroll 
+} from './components/TextEffect'; 
 
 const profile = {
   name: "田中 しほ",
@@ -82,14 +87,18 @@ export default function HomePage() {
             <div className="container mx-auto px-6 relative z-20 w-full max-w-7xl h-full flex items-end pb-16">
               <div className="w-full text-left text-white transform -rotate-2 select-none">
                 <h2 className="whitespace-nowrap text-[10vw] md:text-8xl lg:text-[110px] font-serif font-bold leading-[1.1] drop-shadow-2xl transform skew-x-[-10deg]">
-                  <span className="block mb-2">京都の課題に、</span>
-                  <span className="block ml-[5vw] md:ml-12">全力で走り抜く。</span>
+                  <span className="block mb-2">
+                    <TextEffectImpact text="京都の課題に、" delay={300} isStart={!loading} />
+                  </span>
+                  <span className="block ml-[5vw] md:ml-12">
+                    <TextEffectImpact text="全力で走り抜く。" delay={800} isStart={!loading} />
+                  </span>
                 </h2>
               </div>
             </div>
           </section>
 
-          {/* --- 3. メッセージセクション（写真なし・テキスト重点） --- */}
+          {/* --- 3. メッセージセクション --- */}
           <section className="bg-[#f9f8f6] py-24 md:py-40 overflow-hidden relative">
             <div className="absolute inset-0 flex items-center justify-center select-none pointer-events-none z-0">
               <span className="text-[20vw] font-serif font-black text-[#C5A59E]/5 leading-none">MESSAGE</span>
@@ -98,23 +107,32 @@ export default function HomePage() {
             <div className="max-w-4xl mx-auto px-6 relative z-10">
               <div className="text-center md:text-left">
                 <div className="mb-12 flex flex-col items-center md:items-start">
-                  <h3 className="text-sm font-black tracking-[0.4em] text-[#C5A59E] mb-6 flex items-center gap-4">
+                  <h3 className="text-2xl font-black tracking-[0.4em] text-[#C5A59E] mb-6 flex items-center gap-4 relative">
                     <span className="w-8 h-[1px] bg-[#C5A59E]"></span>
-                    MESSAGE
+                    <span className="relative inline-block">
+                      <span className="absolute -top-4 left-1/2 -translate-x-1/2 text-xs text-[#C5A59E]/70 whitespace-nowrap">メッセージ</span>
+                      {/* isStartを渡してLoading後に発火させる */}
+                      <TextEffectSlideLeft text="MESSAGE" delay={200} isStart={!loading} />
+                    </span>
                     <span className="w-8 h-[1px] bg-[#C5A59E] md:hidden"></span>
                   </h3>
                   <h4 className="whitespace-nowrap text-[7.5vw] md:text-6xl lg:text-7xl font-serif font-bold text-[#4A443F] leading-tight transform skew-x-[-6deg] origin-left">
-                        <span className="block">「守るべき」を守り、</span>
-                        <span className="block md:ml-12">「変えるべき」を変える。</span>
+                    {/* スクロールで見えたら表示するように差し替え */}
+                    <span className="block">
+                      <TextEffectScroll text="「守るべき」を守り、" delay={100} />
+                    </span>
+                    <span className="block md:ml-12">
+                      <TextEffectScroll text="「変えるべき」を変える。" delay={400} />
+                    </span>
                   </h4>
                 </div>
 
                 <div className="max-w-2xl md:ml-12 space-y-8 text-[#5C544E] leading-[2.2]">
                   <p className="text-xl md:text-2xl font-serif italic text-[#4A443F] border-b border-[#C5A59E]/30 pb-4 inline-block">
-                    「伝える」立場から、「解決する」立場へ。
+                    <TextEffectScroll text="「伝える」立場から、「解決する」立場へ。" delay={600} />
                   </p>
                   <p className="text-base md:text-lg text-[#7A7167] font-medium">
-                    {profile.introduction}
+                    <TextEffectScroll text={profile.introduction} delay={800} />
                   </p>
                 </div>
 
@@ -123,7 +141,7 @@ export default function HomePage() {
                     <p className="text-xs text-[#B5ADA5] tracking-[0.3em] uppercase mb-2">Representative</p>
                     <p className="text-sm font-bold text-[#7A7167] mb-2">{profile.role}</p>
                     <span className="text-6xl md:text-8xl font-serif font-bold text-[#4A443F] tracking-tighter">
-                      {profile.name}
+                      <TextEffectScroll text={profile.name} delay={1000} />
                     </span>
                   </div>
                 </div>
