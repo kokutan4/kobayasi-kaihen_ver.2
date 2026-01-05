@@ -149,6 +149,78 @@ export default function HomePage() {
             </div>
           </section>
 
+          {/* --- 3. プロフィール --- */}
+          <div className="max-w-5xl mx-auto px-6">
+            <section className="py-20 border-t border-[#F2EDE9]">
+              {/* 見出し */}
+              <div className="text-center mb-16">
+                <h2 className="text-3xl md:text-4xl font-bold text-slate-800 tracking-wider">
+                  PROFILE
+                </h2>
+                <p className="mt-2 text-[#E95295] font-semibold">プロフィール</p>
+              </div>
+
+              {/* flex-col-reverse を使うことで、スマホ時は写真が上に、テキストが下になります */}
+              <div className="flex flex-col-reverse md:flex-row items-center md:items-start gap-12">
+                
+                {/* 左側：経歴エリア */}
+                <div className="w-full md:w-3/5 text-slate-700 leading-relaxed">
+                  <h3 className="text-2xl font-bold mb-1">〇〇 〇〇</h3>
+                  <p className="text-sm text-gray-500 mb-6 font-medium">MARUMARU MARUKO</p>
+                  
+                  <p className="mb-8 italic border-l-4 border-[#E95295] pl-4 text-lg font-medium">
+                    「この街の声を、真っ直ぐに届けたい。」
+                  </p>
+
+                  <div className="space-y-6">
+                    <div>
+                      <h4 className="font-bold text-[#E95295] mb-2 flex items-center">
+                        <span className="w-2 h-2 bg-[#E95295] rounded-full mr-2"></span>
+                        経歴
+                      </h4>
+                      <ul className="list-none space-y-2 text-sm md:text-base">
+                        <li>19XX年 〇〇市生まれ</li>
+                        <li>〇〇大学 〇〇学部 卒業</li>
+                        <li>民間企業にて10年間勤務（広報・マーケティング担当）</li>
+                        <li>現在は二児の母として、地域のボランティア活動に従事</li>
+                      </ul>
+                    </div>
+
+                    <div>
+                      <h4 className="font-bold text-[#E95295] mb-2 flex items-center">
+                        <span className="w-2 h-2 bg-[#E95295] rounded-full mr-2"></span>
+                        趣味・特技
+                      </h4>
+                      <p className="text-sm md:text-base">
+                        家庭菜園、読書（歴史小説）、地域の清掃活動
+                      </p>
+                    </div>
+                    
+                    <div className="pt-4">
+                      <button className="bg-[#E95295] text-white px-8 py-3 rounded-full hover:bg-[#d44685] transition-colors duration-300 shadow-md">
+                        さらに詳しい歩みを見る
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                {/* 右側：画像エリア */}
+                <div className="w-full md:w-2/5">
+                  <div className="relative">
+                    {/* 背景の装飾：写真の背面にずらして配置 */}
+                    <div className="absolute -bottom-4 -left-4 w-full h-full border-2 border-[#E95295] rounded-lg -z-10"></div>
+                    <img
+                      src="img/prof.png" 
+                      alt="〇〇 〇〇 プロフィール写真"
+                      className="w-full h-auto rounded-lg shadow-xl object-cover"
+                    />
+                  </div>
+                </div>
+
+              </div>
+            </section>
+          </div>
+
           {/* --- 4. クイックリンク --- */}
           <div className="max-w-5xl mx-auto px-6">
             <section className="py-20 border-t border-[#F2EDE9]">
